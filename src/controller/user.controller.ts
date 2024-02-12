@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -6,7 +7,9 @@ import {
   Param,
   Post,
   Put,
-} from '@nestjs/common';
+  Query
+} from "@nestjs/common";
+import { UserCreateDto } from "../dto/user-create.dto";
 
 @Controller('user')
 export class UserController {
@@ -21,8 +24,8 @@ export class UserController {
   }
 
   @Post()
-  createUser(): string {
-    return '创建用户';
+  createUser(@Body() userCreateDto: UserCreateDto) {
+    return userCreateDto;
   }
 
   @Put()
