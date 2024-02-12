@@ -1,19 +1,18 @@
 import {
-  Bind,
   Controller,
   Delete,
   Get,
-  HttpCode, Param,
+  HostParam,
+  Param,
   Post,
   Put,
-  Redirect
-} from "@nestjs/common";
+} from '@nestjs/common';
 
-@Controller('user')
+@Controller({ path: 'users', host: ':nickname.abb.com' })
 export class UserController {
   @Get()
-  searchUsers() {
-    return '用户列表';
+  searchUsers(@HostParam('nickname') nickname: string) {
+    return '用户列表' + nickname;
   }
 
   @Get(':id')
