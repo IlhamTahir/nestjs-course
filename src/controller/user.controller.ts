@@ -1,21 +1,24 @@
 import {
+  Bind,
   Controller,
   Delete,
   Get,
-  HttpCode,
+  HttpCode, Param,
   Post,
   Put,
-  Redirect,
-} from '@nestjs/common';
+  Redirect
+} from "@nestjs/common";
 
 @Controller('user')
 export class UserController {
   @Get()
-  @Redirect('https://baidu.com', 301)
-  getUsers() {
-    return {
-      url: 'https://qq.com',
-    };
+  searchUsers() {
+    return '用户列表';
+  }
+
+  @Get(':id')
+  getUser(@Param('id') id: string) {
+    return `当前用户ID为${id}`;
   }
 
   @Post()
