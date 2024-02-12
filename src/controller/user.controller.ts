@@ -8,11 +8,11 @@ import {
   Put,
 } from '@nestjs/common';
 
-@Controller({ path: 'users', host: ':nickname.abb.com' })
+@Controller('user')
 export class UserController {
   @Get()
-  searchUsers(@HostParam('nickname') nickname: string) {
-    return '用户列表' + nickname;
+  async searchUsers() {
+    return '用户列表';
   }
 
   @Get(':id')
