@@ -2,7 +2,7 @@ import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
 
 @Controller('user')
 export class UserController {
-  @Get()
+  @Get('user*a')
   getUsers(): string {
     return '列表用户';
   }
