@@ -3,24 +3,31 @@ import {
   Controller,
   Delete,
   Get,
-  HostParam,
   Param,
   Post,
   Put,
-  Query
-} from "@nestjs/common";
-import { UserCreateDto } from "../dto/user-create.dto";
+} from '@nestjs/common';
+import { UserCreateDto } from '../dto/user-create.dto';
+import { UserDto } from '../dto/user.dto';
 
 @Controller('user')
 export class UserController {
   @Get()
-  async searchUsers() {
-    return '用户列表';
+  async searchUsers(): Promise<UserDto[]> {
+    return [];
   }
 
   @Get(':id')
-  getUser(@Param('id') id: string) {
-    return `当前用户ID为${id}`;
+  getUser(@Param('id') id: string): Promise<UserDto> {
+    // 根据id 拿用户信息，然后返回这个用户。
+    return Promise.resolve({
+      id,
+      username: '依力',
+      age: 33,
+      gender: '男',
+      createTime: '2021-08-09 00:00:00',
+      updateTime: '2021-08-09 00:00:00',
+    });
   }
 
   @Post()
@@ -28,13 +35,20 @@ export class UserController {
     return userCreateDto;
   }
 
-  @Put()
-  updateUser(): string {
-    return '更新用户';
+  @Put(':id')
+  updateUser(@Param('id') id: string): Promise<UserDto> {
+    return Promise.resolve({
+      id,
+      username: '依力',
+      age: 33,
+      gender: '男',
+      createTime: '2021-08-09 00:00:00',
+      updateTime: '2021-08-09 00:00:00',
+    });
   }
 
-  @Delete()
-  deleteUser(): string {
-    return '删除用户';
+  @Delete(':id')
+  deleteUser(@Param('id') id: string): void {
+    console.log(id);
   }
 }
