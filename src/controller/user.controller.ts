@@ -1,11 +1,21 @@
-import { Controller, Delete, Get, HttpCode, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Post,
+  Put,
+  Redirect,
+} from '@nestjs/common';
 
 @Controller('user')
 export class UserController {
   @Get()
-  @HttpCode(500)
-  getUsers(): string {
-    return '列表用户';
+  @Redirect('https://baidu.com', 301)
+  getUsers() {
+    return {
+      url: 'https://qq.com',
+    };
   }
 
   @Post()
