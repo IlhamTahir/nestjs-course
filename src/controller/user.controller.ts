@@ -1,8 +1,9 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Controller, Delete, Get, HttpCode, Post, Put } from '@nestjs/common';
 
 @Controller('user')
 export class UserController {
-  @Get('user*a')
+  @Get()
+  @HttpCode(500)
   getUsers(): string {
     return '列表用户';
   }
