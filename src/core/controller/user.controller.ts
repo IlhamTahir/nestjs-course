@@ -7,16 +7,19 @@ import {
   Param,
   Post,
   Put,
+  UseFilters,
 } from '@nestjs/common';
 import { UserCreateDto } from '../dto/user-create.dto';
 import { UserDto } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
+import { HttpExceptionFilter } from '../filter/HttpExceptionFilter';
 
 @Controller('user')
 export class UserController {
   @Inject()
   private readonly userService: UserService;
   @Get()
+  @UseFilters(new HttpExceptionFilter())
   async searchUsers(): Promise<UserDto[]> {
     return this.userService.searchUsers();
   }
