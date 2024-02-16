@@ -1,13 +1,7 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { CoreModule } from './core/core.module';
-import { loggerMiddleware } from './core/middleware/logger.middleware';
-import { UserController } from './core/controller/user.controller';
 import cors from 'cors';
+import { loggerMiddleware } from './core/middleware/logger.middleware';
 
 @Module({
   imports: [CoreModule],
@@ -17,9 +11,6 @@ import cors from 'cors';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(loggerMiddleware, cors)
-      .exclude({ path: '/users/*', method: RequestMethod.GET })
-      .forRoutes(UserController);
+    consumer.apply(loggerMiddleware, cors).forRoutes('*');
   }
 }
