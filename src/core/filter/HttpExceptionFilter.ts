@@ -5,10 +5,16 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
+import { BaseExceptionFilter } from '@nestjs/core';
 
 @Catch()
-export class HttpExceptionFilter implements ExceptionFilter {
+export class HttpExceptionFilter
+  extends BaseExceptionFilter
+  implements ExceptionFilter
+{
   catch(exception: unknown, host: ArgumentsHost) {
+    super.catch(exception, host);
+    // 我自己的其他操作
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
     const request = ctx.getRequest();
