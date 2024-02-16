@@ -7,6 +7,7 @@ import {
 import { CoreModule } from './core/core.module';
 import { loggerMiddleware } from './core/middleware/logger.middleware';
 import { UserController } from './core/controller/user.controller';
+import cors from 'cors';
 
 @Module({
   imports: [CoreModule],
@@ -17,7 +18,7 @@ import { UserController } from './core/controller/user.controller';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(loggerMiddleware)
+      .apply(loggerMiddleware, cors)
       .exclude({ path: '/users/*', method: RequestMethod.GET })
       .forRoutes(UserController);
   }
