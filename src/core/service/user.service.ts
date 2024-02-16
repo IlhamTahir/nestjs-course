@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { ForbiddenException } from '../execption/forbidden.exception';
 
 @Injectable()
 export class UserService {
   async searchUsers() {
-    throw new Error();
+    throw new ForbiddenException();
     return [];
   }
 
