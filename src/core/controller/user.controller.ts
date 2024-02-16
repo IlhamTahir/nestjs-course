@@ -12,6 +12,7 @@ import {
 import { UserCreateDto } from '../dto/user-create.dto';
 import { UserDto } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
+import { ValidateMobilePipe } from '../pipe/ValidateMobilePipe';
 
 @Controller('user')
 export class UserController {
@@ -46,6 +47,17 @@ export class UserController {
       createTime: '2021-08-09 00:00:00',
       updateTime: '2021-08-09 00:00:00',
     });
+  }
+
+  @Put(':id/modifyMobile')
+  modifyMobile(
+    @Param('id', ParseIntPipe) id: number,
+    @Body('mobile', ValidateMobilePipe) mobile: string,
+  ) {
+    return {
+      id,
+      mobile,
+    };
   }
 
   @Delete(':id')
