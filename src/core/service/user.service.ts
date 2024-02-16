@@ -7,7 +7,7 @@ export class UserService {
     return [];
   }
 
-  async getUser(id: string) {
+  async getUser(id: number) {
     return {
       id,
       username: '依力',

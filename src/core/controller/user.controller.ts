@@ -5,6 +5,7 @@ import {
   Get,
   Inject,
   Param,
+  ParseIntPipe,
   Post,
   Put,
 } from '@nestjs/common';
@@ -22,8 +23,10 @@ export class UserController {
   }
 
   @Get(':id')
-  getUser(@Param('id') id: string): Promise<UserDto> {
-    throw new Error();
+  getUser(
+    @Param('id', ParseIntPipe)
+    id: number,
+  ): Promise<UserDto> {
     // 根据id 拿用户信息，然后返回这个用户。
     return this.userService.getUser(id);
   }
@@ -34,7 +37,7 @@ export class UserController {
   }
 
   @Put(':id')
-  updateUser(@Param('id') id: string): Promise<UserDto> {
+  updateUser(@Param('id', ParseIntPipe) id: number): Promise<UserDto> {
     return Promise.resolve({
       id,
       username: '依力',
