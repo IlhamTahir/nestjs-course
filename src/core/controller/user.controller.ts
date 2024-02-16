@@ -7,25 +7,23 @@ import {
   Param,
   Post,
   Put,
-  UseFilters,
 } from '@nestjs/common';
 import { UserCreateDto } from '../dto/user-create.dto';
 import { UserDto } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
-import { HttpExceptionFilter } from '../filter/HttpExceptionFilter';
 
 @Controller('user')
 export class UserController {
   @Inject()
   private readonly userService: UserService;
   @Get()
-  @UseFilters(new HttpExceptionFilter())
   async searchUsers(): Promise<UserDto[]> {
     return this.userService.searchUsers();
   }
 
   @Get(':id')
   getUser(@Param('id') id: string): Promise<UserDto> {
+    throw new Error();
     // 根据id 拿用户信息，然后返回这个用户。
     return this.userService.getUser(id);
   }
