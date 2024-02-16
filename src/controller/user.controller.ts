@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  Inject,
   Param,
   Post,
   Put,
@@ -13,7 +14,8 @@ import { UserService } from '../service/user.service';
 
 @Controller('user')
 export class UserController {
-  private userService: UserService;
+  @Inject()
+  private readonly userService: UserService;
   @Get()
   async searchUsers(): Promise<UserDto[]> {
     return this.userService.searchUsers();
@@ -45,9 +47,5 @@ export class UserController {
   @Delete(':id')
   deleteUser(@Param('id') id: string): void {
     console.log(id);
-  }
-
-  setUserService(userService: UserService) {
-    this.userService = userService;
   }
 }
