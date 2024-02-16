@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class UserService {
   async searchUsers() {
+    throw new Error();
     return [];
   }
 
