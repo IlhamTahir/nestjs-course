@@ -13,7 +13,6 @@ import { UserCreateDto } from '../dto/user-create.dto';
 import { UserDto } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
 import { ValidateMobilePipe } from '../pipe/ValidateMobilePipe';
-import { ValidationPipe } from '../pipe/ValidationPipe';
 
 @Controller('user')
 export class UserController {
@@ -34,7 +33,7 @@ export class UserController {
   }
 
   @Post()
-  createUser(@Body(ValidationPipe) userCreateDto: UserCreateDto) {
+  createUser(@Body() userCreateDto: UserCreateDto) {
     return userCreateDto;
   }
 
