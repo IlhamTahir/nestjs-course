@@ -13,7 +13,7 @@ import { UserService } from '../service/user.service';
 
 @Controller('user')
 export class UserController {
-  constructor(private userService: UserService) {}
+  private userService: UserService;
   @Get()
   async searchUsers(): Promise<UserDto[]> {
     return this.userService.searchUsers();
@@ -45,5 +45,9 @@ export class UserController {
   @Delete(':id')
   deleteUser(@Param('id') id: string): void {
     console.log(id);
+  }
+
+  setUserService(userService: UserService) {
+    this.userService = userService;
   }
 }
