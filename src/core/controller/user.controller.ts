@@ -13,6 +13,7 @@ import { UserCreateDto } from '../dto/user-create.dto';
 import { UserDto } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
 import { ValidateMobilePipe } from '../pipe/ValidateMobilePipe';
+import { Role } from '../common/decorators';
 
 @Controller('user')
 export class UserController {
@@ -24,6 +25,7 @@ export class UserController {
   }
 
   @Get(':id')
+  @Role('admin')
   getUser(
     @Param('id', ParseIntPipe)
     id: number,
@@ -38,6 +40,7 @@ export class UserController {
   }
 
   @Put(':id')
+  @Role('admin', 'user')
   updateUser(@Param('id', ParseIntPipe) id: number): Promise<UserDto> {
     return Promise.resolve({
       id,

@@ -6,6 +6,7 @@ import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { HttpExceptionFilter } from './core/filter/HttpExceptionFilter';
 import { ValidationPipe } from './core/pipe/ValidationPipe';
 import { AuthGuard } from './core/guard/AuthGuard';
+import { RoleGuard } from './core/guard/RoleGuard';
 
 @Module({
   imports: [CoreModule],
@@ -22,6 +23,10 @@ import { AuthGuard } from './core/guard/AuthGuard';
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RoleGuard,
     },
   ],
   exports: [],
