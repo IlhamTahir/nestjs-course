@@ -6,6 +6,7 @@ async function bootstrap() {
   // app.use(loggerMiddleware);
   // app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalPipes(new ValidationPipe());
+  // app.useGlobalGuards(new AuthGuard());
   await app.listen(3000);
 }
 bootstrap();
