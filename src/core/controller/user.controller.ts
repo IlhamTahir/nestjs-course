@@ -40,7 +40,6 @@ export class UserController {
   }
 
   @Put(':id')
-  @Role('admin', 'user')
   updateUser(@Param('id', ParseIntPipe) id: number): Promise<UserDto> {
     return Promise.resolve({
       id,

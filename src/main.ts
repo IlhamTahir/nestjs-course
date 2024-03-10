@@ -7,6 +7,7 @@ async function bootstrap() {
   // app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalPipes(new ValidationPipe());
   // app.useGlobalGuards(new AuthGuard());
+  // app.useGlobalInterceptors(new LoggerInterceptor());
   await app.listen(3000);
 }
 bootstrap();
