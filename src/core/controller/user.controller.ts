@@ -3,19 +3,24 @@ import {
   Controller,
   Delete,
   Get,
+  HttpException,
   Inject,
   Param,
   ParseIntPipe,
   Post,
   Put,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserCreateDto } from '../dto/user-create.dto';
 import { UserDto } from '../dto/user.dto';
 import { UserService } from '../service/user.service';
 import { ValidateMobilePipe } from '../pipe/ValidateMobilePipe';
 import { Role } from '../common/decorators';
+import { ExcludeNullInterceptor } from '../interceptor/ExcludeNullInterceptor';
+import { ErrorsInterceptor } from '../interceptor/ErrorsInterceptor';
 
 @Controller('user')
+@UseInterceptors(ExcludeNullInterceptor, ErrorsInterceptor)
 export class UserController {
   @Inject()
   private readonly userService: UserService;
@@ -31,6 +36,7 @@ export class UserController {
     id: number,
   ): Promise<UserDto> {
     // 根据id 拿用户信息，然后返回这个用户。
+    throw new HttpException('无法访问', 403);
     return this.userService.getUser(id);
   }
 
